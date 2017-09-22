@@ -49,7 +49,6 @@ public class WebSocketListen {
                 e.printStackTrace();
                 continue;
             }
-            
         }
     }
     

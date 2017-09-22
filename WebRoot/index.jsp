@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,10 +28,11 @@
     }
     
     websocket.onopen = function () {
-    	setMessageInnerHTMl('连接成功');
+    	setMessageInnerHTML('连接成功');
     }
     
-    websocket.onmessage = function () {
+    websocket.onmessage = function (event) {
+    	alert(event.data + ' : 服务端数据');
     	setMessageInnerHTML(event.data);
     }
     
@@ -43,12 +44,17 @@
     	closeWebSocket();
     }
     
+    function setMessageInnerHTML(txt) {
+    	alert(txt + ' : 设置文本内容');
+    	document.getElementById('message').innerHTMl = txt + '<br>';
+    }
+    
     function closeWebSocket() {
     	websocket.close();
     }
     
     function send() {
-    	var message = document.getElementById('text');
+    	var message = document.getElementById('text').value;
     	websocket.send(message);
     }
 
